@@ -1,0 +1,16 @@
+## Logical service name with which it registers itself at the service registry
+spring:
+  application:
+    name: account-service
+
+## Port on which this microservice is going to run
+server:
+  port: 6060
+
+## Where to find the service registry
+eureka:
+  client:
+    service-url:
+      default-zone: ${EUREKA_URI:http://localhost:8761/eureka}
+  instance:
+    prefer-ip-address: true
