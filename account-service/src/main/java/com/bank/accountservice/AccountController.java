@@ -2,6 +2,7 @@ package com.bank.accountservice;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import java.util.List;
 
 @RestController
 public class AccountController {
@@ -32,6 +33,21 @@ public class AccountController {
     @DeleteMapping(value = "/account")
     public void delete (@RequestBody Account account){
         accountRepository.delete(account);
+    }
+
+    @GetMapping(value = "/account/account-type/{type}")
+    public List<Account> findByAccountType (@PathVariable String type){
+	return accountRepository.findAllByAccountType(type);
+    }
+	
+    @GetMapping(value = "/account/bank/{bank}")
+    public List<Account> findByBank (@PathVariable String bank){
+	return accountRepository.findByBank(bank);
+    }
+	
+    @GetMapping(value = "/account/customer/{customer}")
+    public List<Account> findByCutomer (@PathVariable Integer customer){
+	return accountRepository.findAllByCustomerId(customer);
     }
 
 }
